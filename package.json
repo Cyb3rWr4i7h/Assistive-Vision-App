@@ -1,0 +1,13 @@
+{
+  "name": "visionassist",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "start": "npm run --prefix frontend start",
+    "backend": "npm run --prefix backend start",
+    "install-all": "npm install --workspaces"
+  }
+}
