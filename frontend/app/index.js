@@ -15,11 +15,11 @@ export default function Home() {
       route: '/object-detection',
     },
     {
-      title: 'Text Reader',
+      title: 'Document Reader',
       description: 'Read text from images and documents',
       icon: 'file-text',
       iconComponent: FontAwesome,
-      route: '/text-reader',
+      route: '/document-reader',
     },
     {
       title: 'Voice Assistant',
@@ -39,9 +39,9 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome to VisionAssist</Text>
+      <Text style={styles.title}>Welcome to Assistive Vision App</Text>
       <Text style={styles.description}>
-        Your AI-powered assistant for vision and navigation
+        Your AI-powered assistant
       </Text>
       
       <View style={styles.featuresContainer}>

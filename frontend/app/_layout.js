@@ -31,9 +31,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="text-reader"
+        name="document-reader"
         options={{
-          title: 'Text Reader',
+          title: 'Document Reader',
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="file-text" size={size} color={color} />
           ),
