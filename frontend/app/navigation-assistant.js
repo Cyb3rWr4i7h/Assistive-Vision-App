@@ -31,7 +31,7 @@ export default function NavigationAssistantScreen() {
       'Your destination is on the left',
     ];
 
-    // Simulate navigation updates
+
     let index = 0;
     const interval = setInterval(() => {
       if (index < directions.length) {
