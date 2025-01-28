@@ -28,7 +28,7 @@ Ensure you have these tools installed before proceeding.
 
 2. **Clone your forked repository:**
    ```bash
-   git clone https://github.com/<your-username>/assistive-vision-app.git
+   git clone https://github.com/Cyb3rWr4i7h/assistive-vision-app.git
    ```
 
 3. **Navigate to the project directory:**
