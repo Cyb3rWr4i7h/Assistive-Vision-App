@@ -3,10 +3,12 @@
 An assistive vision app designed to enhance accessibility for individuals with visual impairments by providing features such as text recognition, speech synthesis, and object detection.
 
 ## Features
-- **Text Recognition (OCR):** Recognize and read text from images or live camera feeds.
-- **Speech Synthesis:** Convert recognized text to speech for auditory assistance.
 - **Object Detection:** Identify objects in the surroundings using AI models.
-- **Customizable Interface:** Tailored UI for easy navigation.
+- **Document Viewer:** Access and read documents with ease.
+- **AI Personal Assistant:** Interact with an AI assistant for various tasks and information.
+- **Navigation Assistant:** Get assistance with navigation and direction guidance.
+
+## Note - Currently this app is in making so some features may not work
 
 ---
 
