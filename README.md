@@ -8,7 +8,7 @@ An assistive vision app designed to enhance accessibility for individuals with v
 - **AI Personal Assistant:** Interact with an AI assistant for various tasks and information.
 - **Navigation Assistant:** Get assistance with navigation and direction guidance.
 
-## Note - Currently this app is in making so some features may not work
+##   Note - Currently this app is in making so some features may not work
 
 ---
 
