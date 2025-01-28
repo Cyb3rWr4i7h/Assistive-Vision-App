@@ -18,26 +18,31 @@
     "expo": "^52.0.27",
     "expo-camera": "~16.0.14",
     "expo-constants": "~15.4.5",
+    "expo-document-picker": "^13.0.2",
     "expo-linking": "~6.2.2",
     "expo-location": "~16.5.5",
     "expo-router": "^3.4.8",
     "expo-speech": "~11.7.0",
     "expo-status-bar": "^2.0.1",
     "lucide-react": "^0.474.0",
+    "pdf-parse": "^1.1.1",
+    "pdfjs-dist": "^3.11.174",
     "react": "^18.3.1",
     "react-dom": "18.3.1",
     "react-native": "^0.76.6",
     "react-native-gesture-handler": "~2.20.2",
+    "react-native-pdf": "^6.7.6",
     "react-native-safe-area-context": "^4.12.0",
     "react-native-screens": "~4.4.0",
     "react-native-voice": "^0.3.0",
     "react-native-web": "~0.19.13",
-    "react-webcam": "^7.2.0"
+    "react-webcam": "^7.2.0",
+    "tesseract.js": "^5.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "typescript": "^5.3.3",
-    "@types/react": "~18.3.12"
+    "@types/react": "~18.3.12",
+    "typescript": "^5.3.3"
   },
   "private": true
 }
