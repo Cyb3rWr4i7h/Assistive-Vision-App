@@ -9,5 +9,8 @@
     "start": "npm run --prefix frontend start",
     "backend": "npm run --prefix backend start",
     "install-all": "npm install --workspaces"
+  },
+  "dependencies": {
+    "react-native-web": "~0.19.13"
   }
 }

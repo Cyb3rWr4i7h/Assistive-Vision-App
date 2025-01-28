@@ -1,41 +1,133 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import * as Speech from 'expo-speech';
+import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import Voice from '@react-native-voice/voice';
+
+// Only import Speech on native platforms
+const Speech = Platform.OS === 'web' ? null : require('expo-speech');
 
 export default function VoiceAssistantScreen() {
   const [isListening, setIsListening] = useState(false);
   const [spokenText, setSpokenText] = useState('');
   const [response, setResponse] = useState('');
+  const [recognition, setRecognition] = useState(null);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+
+  const speak = async (text) => {
+    if (Platform.OS === 'web') {
+      // Use Web Speech API for synthesis
+      if (window.speechSynthesis) {
+        // Cancel any ongoing speech
+        window.speechSynthesis.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.pitch = 1;
+        utterance.rate = 0.8;
+        
+        utterance.onstart = () => setIsSpeaking(true);
+        utterance.onend = () => setIsSpeaking(false);
+        utterance.onerror = (error) => {
+          console.error('Speech synthesis error:', error);
+          setIsSpeaking(false);
+        };
+        
+        window.speechSynthesis.speak(utterance);
+      } else {
+        console.warn('Speech synthesis not supported in this browser');
+      }
+    } else if (Speech) {
+      // Use Expo Speech for native platforms
+      try {
+        setIsSpeaking(true);
+        await Speech.speak(text, {
+          language: 'en',
+          pitch: 1,
+          rate: 0.8,
+          onDone: () => setIsSpeaking(false),
+          onError: (error) => {
+            console.error('Error speaking:', error);
+            setIsSpeaking(false);
+          },
+        });
+      } catch (error) {
+        console.error('Error speaking:', error);
+        setIsSpeaking(false);
+      }
+    }
+  };
 
   useEffect(() => {
-    Voice.onSpeechStart = () => setIsListening(true);
-    Voice.onSpeechEnd = () => setIsListening(false);
-    Voice.onSpeechResults = (e) => {
-      if (e.value) {
-        setSpokenText(e.value[0]);
-        handleCommand(e.value[0]);
+    if (Platform.OS === 'web') {
+      // Web Speech API setup
+      if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognitionInstance = new SpeechRecognition();
+        recognitionInstance.continuous = false;
+        recognitionInstance.interimResults = false;
+        recognitionInstance.lang = 'en-US';
+
+        recognitionInstance.onstart = () => setIsListening(true);
+        recognitionInstance.onend = () => setIsListening(false);
+        recognitionInstance.onresult = (event) => {
+          const text = event.results[0][0].transcript;
+          setSpokenText(text);
+          handleCommand(text);
+        };
+
+        setRecognition(recognitionInstance);
+      } else {
+        console.warn('Speech recognition not supported in this browser');
       }
-    };
+    } else {
+      // Native platform setup
+      Voice.onSpeechStart = () => setIsListening(true);
+      Voice.onSpeechEnd = () => setIsListening(false);
+      Voice.onSpeechResults = (e) => {
+        if (e.value) {
+          setSpokenText(e.value[0]);
+          handleCommand(e.value[0]);
+        }
+      };
+    }
 
     return () => {
-      Voice.destroy().then(Voice.removeAllListeners);
+      if (Platform.OS === 'web') {
+        if (recognition) {
+          recognition.stop();
+        }
+      } else {
+        Voice.destroy().then(Voice.removeAllListeners);
+      }
     };
   }, []);
 
   const startListening = async () => {
     try {
-      await Voice.start('en-US');
+      if (Platform.OS === 'web') {
+        if (recognition) {
+          recognition.start();
+        } else {
+          console.warn('Speech recognition not initialized');
+        }
+      } else {
+        await Voice.start('en-US');
+      }
     } catch (e) {
-      console.error(e);
+      console.error('Error starting voice recognition:', e);
     }
   };
 
   const stopListening = async () => {
     try {
-      await Voice.stop();
+      if (Platform.OS === 'web') {
+        if (recognition) {
+          recognition.stop();
+        }
+      } else {
+        await Voice.stop();
+      }
     } catch (e) {
-      console.error(e);
+      console.error('Error stopping voice recognition:', e);
     }
   };
 
@@ -47,7 +139,7 @@ export default function VoiceAssistantScreen() {
     if (lowerCommand.includes('hello') || lowerCommand.includes('hi')) {
       responseText = 'Hello! How can I help you today?';
     } else if (lowerCommand.includes('time')) {
-      responseText = `The current time is ${new Date().toLocaleTimeString()}`;
+      responseText = 'The current time is ${new Date().toLocaleTimeString()}';
     } else if (lowerCommand.includes('help')) {
       responseText = 'I can help you with object detection, reading text, and navigation. What would you like to do?';
     } else {
@@ -55,11 +147,7 @@ export default function VoiceAssistantScreen() {
     }
 
     setResponse(responseText);
-    Speech.speak(responseText, {
-      language: 'en',
-      pitch: 1,
-      rate: 0.8,
-    });
+    speak(responseText);
   };
 
   return (
