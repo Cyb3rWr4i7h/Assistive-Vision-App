@@ -55,7 +55,12 @@ yarn install
 
 ### Running the App
 
-Run the following command to start the app:
+Navigate to `frontend` directory using:
+```bash
+cd frontend
+```
+
+Then, run the following command to start the app:
 ```bash
 npx expo start
 ```
