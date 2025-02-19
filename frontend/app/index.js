@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
 import { MaterialIcons, MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 import EmergencyContact from './emergency-contact';
@@ -49,23 +49,25 @@ export default function Home() {
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to Assistive Vision App</Text>
       <Text style={styles.description}>Your AI-powered assistant</Text>
-      
-      {/* Emergency Contact Section */}
-      <EmergencyContact />
-      
-      <View style={styles.featuresContainer}>
-        {features.map((feature, index) => (
-          <TouchableOpacity
-            key={index}
-            style={styles.featureButton}
-            onPress={() => router.push(feature.route)}
-          >
-            <feature.iconComponent name={feature.icon} size={32} color="#007bff" />
-            <Text style={styles.featureTitle}>{feature.title}</Text>
-            <Text style={styles.featureDescription}>{feature.description}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+
+      <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+        {/* Emergency Contact Section */}
+        <EmergencyContact />
+
+        <View style={styles.featuresContainer}>
+          {features.map((feature, index) => (
+            <TouchableOpacity
+              key={index}
+              style={styles.featureButton}
+              onPress={() => router.push(feature.route)}
+            >
+              <feature.iconComponent name={feature.icon} size={32} color="#007bff" />
+              <Text style={styles.featureTitle}>{feature.title}</Text>
+              <Text style={styles.featureDescription}>{feature.description}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -88,6 +90,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
     color: '#6c757d',
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    width: '100%',
+    alignItems: 'center',
+    paddingBottom: 20,
   },
   featuresContainer: {
     width: '100%',
