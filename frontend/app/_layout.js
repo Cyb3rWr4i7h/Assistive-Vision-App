@@ -31,6 +31,15 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="color-detection"
+        options={{
+          title: 'Color Detection',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="palette" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="document-reader"
         options={{
           title: 'Document Reader',

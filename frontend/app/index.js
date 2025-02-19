@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { MaterialIcons, MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
+import EmergencyContact from './emergency-contact';
 
 export default function Home() {
   const router = useRouter();
@@ -13,6 +14,13 @@ export default function Home() {
       icon: 'eye',
       iconComponent: MaterialCommunityIcons,
       route: '/object-detection',
+    },
+    {
+      title: 'Color Detection',
+      description: 'Detect colors from your camera',
+      icon: 'palette',
+      iconComponent: MaterialCommunityIcons,
+      route: '/color-detection',
     },
     {
       title: 'Document Reader',
@@ -40,9 +48,10 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to Assistive Vision App</Text>
-      <Text style={styles.description}>
-        Your AI-powered assistant
-      </Text>
+      <Text style={styles.description}>Your AI-powered assistant</Text>
+      
+      {/* Emergency Contact Section */}
+      <EmergencyContact />
       
       <View style={styles.featuresContainer}>
         {features.map((feature, index) => (
@@ -77,7 +86,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     textAlign: 'center',
-    marginBottom: 30,
+    marginBottom: 20,
     color: '#6c757d',
   },
   featuresContainer: {
