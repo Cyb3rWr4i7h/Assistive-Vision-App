@@ -144,8 +144,35 @@ export default function ColorDetectionScreen() {
                 { name: 'violet', lower: [130, 50, 50, 255], upper: [140, 255, 255, 255] },
                 { name: 'turquoise', lower: [85, 100, 100, 255], upper: [95, 255, 255, 255] },
                 { name: 'indigo', lower: [110, 50, 50, 255], upper: [130, 255, 255, 255] },
-                { name: 'white', lower: [0, 0, 200, 255], upper: [180, 30, 255, 255] }, // White range
-                { name: 'black', lower: [0, 0, 0, 255], upper: [180, 255, 30, 255] }, // Black range
+                { name: 'white', lower: [0, 0, 200, 255], upper: [180, 30, 255, 255] },
+                { name: 'black', lower: [0, 0, 0, 255], upper: [180, 255, 30, 255] },
+                { name: 'gray', lower: [0, 0, 50, 255], upper: [180, 30, 200, 255] },
+                { name: 'silver', lower: [0, 0, 192, 255], upper: [180, 30, 255, 255] },
+                { name: 'lime', lower: [35, 50, 50, 255], upper: [85, 255, 255, 255] },
+                { name: 'aqua', lower: [86, 100, 100, 255], upper: [99, 255, 255, 255] },
+                { name: 'fuchsia', lower: [171, 100, 100, 255], upper: [180, 255, 255, 255] },
+                { name: 'crimson', lower: [0, 50, 50, 255], upper: [10, 100, 100, 255] },
+                { name: 'orchid', lower: [150, 50, 50, 255], upper: [160, 150, 150, 255] },
+                { name: 'salmon', lower: [0, 50, 50, 255], upper: [10, 200, 200, 255] },
+                { name: 'tan', lower: [21, 50, 50, 255], upper: [30, 100, 100, 255] },
+                { name: 'plum', lower: [150, 50, 50, 255], upper: [160, 150, 150, 255] },
+                { name: 'peru', lower: [10, 50, 50, 255], upper: [20, 200, 200, 255] },
+                { name: 'khaki', lower: [21, 50, 50, 255], upper: [30, 100, 100, 255] },
+                { name: 'thistle', lower: [150, 50, 50, 255], upper: [160, 150, 150, 255] },
+                { name: 'sienna', lower: [10, 50, 50, 255], upper: [20, 200, 200, 255] },
+                { name: 'rosybrown', lower: [0, 50, 50, 255], upper: [10, 200, 200, 255] },
+                { name: 'lightcoral', lower: [0, 50, 50, 255], upper: [10, 200, 200, 255] },
+                { name: 'darkorange', lower: [11, 100, 100, 255], upper: [20, 255, 255, 255] },
+                { name: 'mediumspringgreen', lower: [35, 50, 50, 255], upper: [85, 255, 255, 255] },
+                { name: 'deepskyblue', lower: [100, 100, 100, 255], upper: [130, 255, 255, 255] },
+                { name: 'royalblue', lower: [100, 100, 100, 255], upper: [130, 255, 255, 255] },
+                { name: 'slateblue', lower: [110, 50, 50, 255], upper: [130, 255, 255, 255] },
+                { name: 'mediumslateblue', lower: [110, 50, 50, 255], upper: [130, 255, 255, 255] },
+                { name: 'mediumpurple', lower: [131, 50, 50, 255], upper: [160, 255, 255, 255] },
+                { name: 'darkviolet', lower: [130, 50, 50, 255], upper: [140, 255, 255, 255] },
+                { name: 'darkmagenta', lower: [171, 100, 100, 255], upper: [180, 255, 255, 255] },
+                { name: 'darkcyan', lower: [86, 100, 100, 255], upper: [99, 255, 255, 255] },
+                { name: 'darkgoldenrod', lower: [21, 100, 100, 255], upper: [30, 255, 255, 255] },
             ];
 
             let maxCount = 0;
@@ -288,9 +315,37 @@ const getHexColor = (colorName) => {
         indigo: '#4B0082',
         white: '#FFFFFF',
         black: '#000000',
-        unknown: '#FFFFFF',
+        gray: '#808080',
+        silver: '#C0C0C0',
+        lime: '#00FF00',
+        aqua: '#00FFFF',
+        fuchsia: '#FF00FF',
+        crimson: '#DC143C',
+        orchid: '#DA70D6',
+        salmon: '#FA8072',
+        tan: '#D2B48C',
+        plum: '#DDA0DD',
+        peru: '#CD853F',
+        khaki: '#F0E68C',
+        thistle: '#D8BFD8',
+        sienna: '#A0522D',
+        rosybrown: '#BC8F8F',
+        lightcoral: '#F08080',
+        darkorange: '#FF8C00',
+        mediumspringgreen: '#00FA9A',
+        deepskyblue: '#00BFFF',
+        royalblue: '#4169E1',
+        slateblue: '#6A5ACD',
+        mediumslateblue: '#7B68EE',
+        mediumpurple: '#9370DB',
+        darkviolet: '#9400D3',
+        darkmagenta: '#8B008B',
+        darkcyan: '#008B8B',
+        darkgoldenrod: '#B8860B',
+        unknown: '#FFFFFF', // Default color for unknown detections
     };
-    return colorMap[colorName] || '#FFFFFF';
+
+    return colorMap[colorName] || '#FFFFFF'; // Fallback to white if the color name is not found
 };
 
 const styles = StyleSheet.create({
