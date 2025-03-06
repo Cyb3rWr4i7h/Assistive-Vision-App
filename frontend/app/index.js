@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
+    marginTop: 10,
     marginBottom: 20,
     borderWidth: 1,
     borderColor: '#dee2e6',
@@ -122,6 +123,8 @@ const styles = StyleSheet.create({
   },
   featureDescription: {
     fontSize: 12,
+    padding: 15,
+    borderRadius: 10,
     textAlign: 'center',
     color: '#6c757d',
   },

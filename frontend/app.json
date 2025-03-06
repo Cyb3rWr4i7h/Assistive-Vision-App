@@ -43,7 +43,8 @@
         {
           "locationAlwaysAndWhenInUsePermission": "Allow VisionAssist to use your location for navigation assistance."
         }
-      ]
+      ],
+      "react-native-vision-camera"
     ],
     "experiments": {
       "tsconfigPaths": true,
